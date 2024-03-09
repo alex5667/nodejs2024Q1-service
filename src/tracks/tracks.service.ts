@@ -1,26 +1,47 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateTrackDto } from './dto/create-track.dto';
 import { UpdateTrackDto } from './dto/update-track.dto';
+import { DbService } from 'src/db/db.service';
 
 @Injectable()
 export class TracksService {
-  create(createTrackDto: CreateTrackDto) {
-    return 'This action adds a new track';
+  constructor(private db: DbService) {}
+  async create(createTrackDto: CreateTrackDto) {
+    return this.db.createTrack(createTrackDto);
   }
 
-  findAll() {
-    return `This action returns all tracks`;
+  async findAll() {
+    return this.db.getTracks();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} track`;
+  async findOne(id: string) {
+    const track = this.db.getTrackById(id);
+    if (!track) {
+      throw new NotFoundException(`Track with id ${id} doesn't exist`);
+    }
+
+    return track;
   }
 
-  update(id: number, updateTrackDto: UpdateTrackDto) {
-    return `This action updates a #${id} track`;
+  async update(updateTrackDto: UpdateTrackDto, id: string) {
+    const updateTrack = this.db.updateTrack(updateTrackDto, id);
+    if (!updateTrack) {
+      throw new NotFoundException(`Track with id ${id} doesn't exist`);
+    }
+
+    return updateTrack;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} track`;
+  async remove(id: string) {
+    const removeTrack = this.db.deleteTrack(id);
+
+    if (!removeTrack) {
+      throw new NotFoundException(`Track with id ${id} doesn't exist`);
+    }
+
+    const favorites = this.db.getAllFavorites();
+    const newFavArtists = favorites.tracks.filter((item) => item == id);
+    favorites.artists = newFavArtists;
+    return removeTrack;
   }
 }

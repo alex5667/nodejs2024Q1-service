@@ -57,8 +57,7 @@ export class ArtistsService {
     });
 
     const favorites = this.db.getAllFavorites();
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const newFavArtists = favorites.artists.filter((item) => item! == id);
+    const newFavArtists = favorites.artists.filter((item) => item == id);
     favorites.artists = newFavArtists;
     return removeArtist;
   }

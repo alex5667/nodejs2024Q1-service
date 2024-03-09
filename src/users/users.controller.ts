@@ -6,8 +6,8 @@ import {
   Put,
   Param,
   Delete,
-  UsePipes,
-  ValidationPipe,
+  // UsePipes,
+  // ValidationPipe,
   ParseUUIDPipe,
   InternalServerErrorException,
   HttpCode,
@@ -21,13 +21,13 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
-  @UsePipes(
-    new ValidationPipe({
-      whitelist: true,
-      forbidNonWhitelisted: true,
-      enableDebugMessages: true,
-    }),
-  )
+  // @UsePipes(
+  //   new ValidationPipe({
+  //     whitelist: true,
+  //     forbidNonWhitelisted: true,
+  //     enableDebugMessages: true,
+  //   }),
+  // )
   async create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
@@ -43,13 +43,13 @@ export class UsersController {
   }
 
   @Put(':id')
-  @UsePipes(
-    new ValidationPipe({
-      whitelist: true,
-      forbidNonWhitelisted: true,
-      enableDebugMessages: true,
-    }),
-  )
+  // @UsePipes(
+  //   new ValidationPipe({
+  //     whitelist: true,
+  //     forbidNonWhitelisted: true,
+  //     enableDebugMessages: true,
+  //   }),
+  // )
   async update(
     @Param('id', ParseUUIDPipe) id: string,
     @Body() updateUserDto: UpdateUserDto,

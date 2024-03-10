@@ -42,12 +42,7 @@ export class UsersController {
   }
 
   @Put(':id')
-  // @UsePipes(
-  //   new ValidationPipe({
-  //     whitelist: true,
-  //     forbidNonWhitelisted: true,
-  //   }),
-  // )
+
   async update(
     @Param('id', ParseUUIDPipe) id: string,
     @Body() updateUserDto: UpdateUserDto,

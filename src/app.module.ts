@@ -8,7 +8,6 @@ import { FavoritesModule } from './favorites/favorites.module';
 import { TracksModule } from './tracks/tracks.module';
 import { DbModule } from './db/db.module';
 import { ConfigModule } from '@nestjs/config';
-import { AuthResolver } from './auth/auth.resolver';
 
 @Module({
   imports: [
@@ -21,6 +20,6 @@ import { AuthResolver } from './auth/auth.resolver';
     ConfigModule.forRoot({ envFilePath: '.env' }),
   ],
   controllers: [AppController],
-  providers: [AppService, AuthResolver],
+  providers: [AppService],
 })
 export class AppModule {}

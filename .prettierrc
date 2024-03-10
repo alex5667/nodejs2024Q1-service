@@ -1,6 +1,14 @@
 {
   "singleQuote": true,
   "trailingComma": "all",
-  "endOfLine": "lf"
+  "endOfLine": "crlf",
+  "overrides": [
+    {
+      "files": "*.js",
+      "options": {
+        "endOfLine": "auto"
+      }
+    }
+  ]
 
 }

@@ -1,8 +1,8 @@
 import {
-  BadRequestException,
+  // BadRequestException,
   ForbiddenException,
   Injectable,
-  InternalServerErrorException,
+  // InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -10,14 +10,6 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { DbService } from 'src/db/db.service';
 import { User } from './entities/user.entity';
 
-// export interface REturnUser {
-//   id: string;
-//   login: string;
-//   password?: string;
-//   version: number;
-//   createdAt: number;
-//   updatedAt: number;
-// }
 
 @Injectable()
 export class UsersService {

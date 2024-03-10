@@ -25,7 +25,6 @@ async function bootstrap() {
     new ValidationPipe({
       whitelist: true,
       forbidNonWhitelisted: true,
-      enableDebugMessages: true,
     }),
   );
   await app.listen(PORT, () => {

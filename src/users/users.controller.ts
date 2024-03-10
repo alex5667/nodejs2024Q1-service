@@ -9,7 +9,7 @@ import {
   // UsePipes,
   // ValidationPipe,
   ParseUUIDPipe,
-  InternalServerErrorException,
+  // InternalServerErrorException,
   HttpCode,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
@@ -25,7 +25,6 @@ export class UsersController {
   //   new ValidationPipe({
   //     whitelist: true,
   //     forbidNonWhitelisted: true,
-  //     enableDebugMessages: true,
   //   }),
   // )
   async create(@Body() createUserDto: CreateUserDto) {
@@ -38,7 +37,7 @@ export class UsersController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string) {
+  async findOne(@Param('id', ParseUUIDPipe) id: string) {
     return this.usersService.findOne(id);
   }
 
@@ -47,19 +46,14 @@ export class UsersController {
   //   new ValidationPipe({
   //     whitelist: true,
   //     forbidNonWhitelisted: true,
-  //     enableDebugMessages: true,
   //   }),
   // )
   async update(
     @Param('id', ParseUUIDPipe) id: string,
     @Body() updateUserDto: UpdateUserDto,
   ) {
-    try {
-      const user = await this.usersService.update(id, updateUserDto);
-      return user;
-    } catch {
-      throw new InternalServerErrorException('Something went wrong');
-    }
+    const user = await this.usersService.update(id, updateUserDto);
+    return user;
   }
 
   @Delete(':id')

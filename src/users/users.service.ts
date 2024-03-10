@@ -1,6 +1,8 @@
 import {
+  BadRequestException,
   ForbiddenException,
   Injectable,
+  InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -37,6 +39,7 @@ export class UsersService {
     if (!user) {
       throw new NotFoundException(`User with id ${id} doesn't exist`);
     }
+
     return this.removePassword(user);
   }
 

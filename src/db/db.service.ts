@@ -17,11 +17,11 @@ import { UpdateTrackDto } from 'src/tracks/dto/update-track.dto';
 @Global()
 @Injectable()
 export class DbService {
-  users: Map<string, User> = new Map();
-  albums: Map<string, Album> = new Map();
-  artists: Map<string, Artist> = new Map();
-  tracks: Map<string, Track> = new Map();
-  favorites: Favorite = {
+  private users: Map<string, User> = new Map();
+  private albums: Map<string, Album> = new Map();
+  private artists: Map<string, Artist> = new Map();
+  private tracks: Map<string, Track> = new Map();
+  private favorites: Favorite = {
     artists: [],
     albums: [],
     tracks: [],
@@ -177,7 +177,7 @@ export class DbService {
   }
 
   createFavorite(path: string, id: string) {
-    const checkFavorite = this.favorites[path + 's'].includes(id);
+    const checkFavorite: boolean = this.favorites[path + 's'].includes(id);
 
     if (!checkFavorite) {
       this.favorites[path + 's'].push(id);
@@ -185,7 +185,7 @@ export class DbService {
   }
 
   deleteFavorite(path: string, id: string) {
-    const checkFavorite = this.favorites[path + 's'].includes(id);
+    const checkFavorite: boolean = this.favorites[path + 's'].includes(id);
 
     if (checkFavorite) {
       this.favorites[path + 's'] = this.favorites[path + 's'].filter(

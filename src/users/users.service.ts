@@ -1,15 +1,12 @@
 import {
-  // BadRequestException,
   ForbiddenException,
   Injectable,
-  // InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { DbService } from 'src/db/db.service';
 import { User } from './entities/user.entity';
-
 
 @Injectable()
 export class UsersService {

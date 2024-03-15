@@ -9,8 +9,7 @@ import { SwaggerModule } from '@nestjs/swagger';
 config();
 
 async function bootstrap() {
-  const PORT = Number(process.env.PORT);
-  console.log('PORT', PORT);
+  const PORT = Number(process.env.PORT) || 4000;
   const app = await NestFactory.create(AppModule);
   try {
     const filePath = resolve(__dirname, '..', 'doc', 'api.yaml');

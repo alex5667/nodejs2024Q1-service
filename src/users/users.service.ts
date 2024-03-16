@@ -14,7 +14,7 @@ export class UsersService {
 
   async create(createUserDto: CreateUserDto) {
     const user = await this.prisma.user.create({
-      data: createUserDto,
+      data: createUserDto as Prisma.UserCreateInput,
     });
 
     return user;
@@ -32,30 +32,33 @@ export class UsersService {
       throw new NotFoundException(`User with id ${id} doesn't exist`);
     }
 
-    //return this.removePassword(user);
     return user;
   }
 
-  async update(id: string, updateUserDto: UpdateUserDto) {
-    const existingUser = await this.prisma.user.findUnique({
+  async update(updateUserDto: UpdateUserDto, id: string) {
+    const checkUser = await this.prisma.user.findUnique({
       where: { id: id },
     });
-    if (!existingUser) {
+    if (!checkUser) {
       throw new NotFoundException(`User with id ${id} doesn't exist`);
     }
 
-    if (existingUser.password !== updateUserDto.oldPassword) {
+    if (checkUser.password !== updateUserDto.oldPassword) {
       throw new ForbiddenException('OldPassword is wrong');
     }
-    const updateUser = await this.prisma.user.update({
-      where: { id: id },
-      data: {
-        password: updateUserDto.newPassword,
-        version: { increment: 1 },
-      },
-    });
-    if (updateUser) {
-      return updateUser;
+    try {
+      const updateUser = await this.prisma.user.update({
+        where: { id: id },
+        data: {
+          password: updateUserDto.newPassword,
+          version: { increment: 1 },
+        },
+      });
+      if (updateUser) {
+        return updateUser;
+      }
+    } catch (err) {
+      return err;
     }
   }
 

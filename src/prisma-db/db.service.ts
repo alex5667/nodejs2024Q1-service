@@ -1,5 +1,5 @@
 import { UpdateAlbumDto } from 'src/albums/dto/update-album.dto';
-import { UpdateUserDto } from './../users/dto/update-user.dto';
+import { UpdateUserDto } from '../users/dto/update-user.dto';
 import { Injectable, Global } from '@nestjs/common';
 import { Album } from 'src/albums/entities/album.entity';
 import { CreateArtistDto } from 'src/artists/dto/create-artist.dto';

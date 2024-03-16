@@ -5,17 +5,12 @@ import {
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-// import { DbService } from 'src/prisma-db/db.service';
 import { Prisma } from '@prisma/client';
-// import { User } from './entities/user.entity';
 import { PrismaService } from 'src/prisma-db/prisma-db.service';
 
 @Injectable()
 export class UsersService {
-  constructor(
-    // private db: DbService,
-    private prisma: PrismaService,
-  ) {}
+  constructor(private prisma: PrismaService) {}
 
   async create(createUserDto: CreateUserDto) {
     const user = await this.prisma.user.create({
@@ -26,8 +21,6 @@ export class UsersService {
   }
 
   async findAll() {
-    // const users = this.db.getUsers().map((user) => this.removePassword(user));
-    // return users;
     return await this.prisma.user.findMany();
   }
 

@@ -13,7 +13,7 @@ export class AlbumsService {
         data: createAlbumDto,
       });
     } catch (err) {
-      return err;
+      throw err;
     }
   }
 

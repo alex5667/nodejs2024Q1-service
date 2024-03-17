@@ -5,7 +5,7 @@ services:
   image: alex5667/app
   environment:
    - PORT=${PORT}
-   - DATABASE_URL=${DATABASE_URL}
+   - DATABASE_URL=${DATABASE_URL_DOCKER}
   ports:
    - ${PORT}:${PORT}
 

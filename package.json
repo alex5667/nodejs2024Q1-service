@@ -22,7 +22,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "prisma:migrate": "npx prisma migrate dev --name init",
-    "prisma:generate": "npx prisma generate"
+    "prisma:generate": "npx prisma generate",
+    "scan": "docker scout cves alex5667/app && docker scout cves alex5667/app-db"
   },
   "dependencies": {
     "@nestjs/common": "^10.1.2",

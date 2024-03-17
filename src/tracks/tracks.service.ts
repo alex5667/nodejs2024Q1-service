@@ -14,7 +14,7 @@ export class TracksService {
         data: createTrackDto,
       });
     } catch (err) {
-      return err;
+      throw err;
     }
   }
 
@@ -47,7 +47,7 @@ export class TracksService {
       ) {
         throw new NotFoundException(`Track with id ${id} doesn't exist`);
       } else {
-        return err;
+        throw err;
       }
     }
   }
@@ -64,7 +64,7 @@ export class TracksService {
       ) {
         throw new NotFoundException(`Track with id ${id} doesn't exist`);
       } else {
-        return err;
+        throw err;
       }
     }
   }

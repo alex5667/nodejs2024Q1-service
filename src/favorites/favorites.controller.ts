@@ -18,12 +18,12 @@ export class FavoritesController {
     @Param('path') path: string,
     @Param('id', ParseUUIDPipe) id: string,
   ) {
-    return this.favoritesService.create(path, id);
+    return await this.favoritesService.create(path, id);
   }
 
   @Get()
   async findAll() {
-    return this.favoritesService.findAll();
+    return await this.favoritesService.findAll();
   }
 
   @Delete(':path/:id')
@@ -32,6 +32,6 @@ export class FavoritesController {
     @Param('path') path: string,
     @Param('id', ParseUUIDPipe) id: string,
   ) {
-    return this.favoritesService.remove(path, id);
+    return await this.favoritesService.remove(path, id);
   }
 }

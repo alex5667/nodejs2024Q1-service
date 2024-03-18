@@ -65,7 +65,5 @@ export class ArtistsService {
         throw err;
       }
     }
-
-
   }
 }

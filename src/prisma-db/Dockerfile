@@ -1,2 +1,2 @@
-FROM postgres:15.3-alpine3.18
+FROM postgres:16.2-alpine3.19
 # EXPOSE ${POSTGRES_PORT}

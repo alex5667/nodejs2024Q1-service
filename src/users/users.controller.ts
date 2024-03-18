@@ -50,7 +50,7 @@ export class UsersController {
     @Param('id', ParseUUIDPipe) id: string,
     @Body() updateUserDto: UpdateUserDto,
   ) {
-    const user = await this.usersService.update(id, updateUserDto);
+    const user = await this.usersService.update(updateUserDto, id);
     if (!user) {
       throw new InternalServerErrorException('Something went wrong');
     }

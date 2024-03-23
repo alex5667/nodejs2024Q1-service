@@ -1,4 +1,4 @@
-FROM node:20-alpine3.18
+FROM node:21-alpine3.18
 
 ARG PORT
 ENV PORT=$PORT
@@ -9,4 +9,5 @@ RUN npm i && npm cache clean --force
 COPY . .
 RUN npx prisma generate
 EXPOSE $PORT
+
 CMD ["npm", "run",  "start:prisma"]

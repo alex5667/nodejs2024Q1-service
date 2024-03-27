@@ -10,6 +10,7 @@ import { PrismaDbModule } from './prisma-db/prisma-db.module';
 import { ConfigModule } from '@nestjs/config';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { LoggerModule } from './logger/logger.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { LoggerModule } from './logger/logger.module';
     TracksModule,
     PrismaDbModule,
     LoggerModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [
